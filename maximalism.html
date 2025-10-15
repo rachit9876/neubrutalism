@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximalism UI Kit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary: #FF1493;
+            --secondary: #FFD700;
+            --tertiary: #00CED1;
+            --quaternary: #FF4500;
+            --purple: #9370DB;
+            --green: #32CD32;
+            --pink: #FF69B4;
+            --orange: #FF8C00;
+            --lime: #ADFF2F;
+            --text: #000;
+            --gold: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: 
+                repeating-linear-gradient(45deg, #FF1493 0px, #FFD700 10px, #00CED1 20px, #FF4500 30px, #9370DB 40px, #32CD32 50px),
+                repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, transparent 5px),
+                radial-gradient(circle at 20% 50%, rgba(255,105,180,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0,206,209,0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200px 200px, 10px 10px, 100% 100%, 100% 100%, 100% 100%;
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 14px;
+            overflow-x: hidden;
+            position: relative;
+            animation: bgShift 20s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        body::before {
+            content: '✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            font-size: 3rem;
+            color: rgba(255,215,0,0.2);
+            pointer-events: none;
+            z-index: 1;
+            animation: scrollSymbols 30s linear infinite;
+            line-height: 4rem;
+            word-wrap: break-word;
+        }
+
+        @keyframes scrollSymbols {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 3rem 2rem;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,215,0,0.3) 2px, rgba(255,215,0,0.3) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,20,147,0.3) 2px, rgba(255,20,147,0.3) 4px),
+                linear-gradient(45deg, #FF1493, #FFD700, #00CED1, #FF4500, #9370DB, #32CD32, #FF69B4);
+            background-size: 100% 100%, 100% 100%, 400% 400%;
+            border: 8px double var(--gold);
+            border-radius: 50px;
+            box-shadow: 
+                0 0 0 4px #FF1493,
+                0 0 0 8px #00CED1,
+                0 0 0 12px #FF4500,
+                0 20px 60px rgba(0,0,0,0.5),
+                inset 0 0 50px rgba(255,255,255,0.4);
+            animation: slideDown 0.6s ease-out, headerPulse 3s ease infinite;
+            position: relative;
+            overflow: visible;
+        }
+
+        @keyframes headerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        header::before {
+            content: '✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            font-size: 2rem;
+            background: linear-gradient(90deg, #FF1493, #FFD700, #00CED1, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: symbolFloat 5s ease infinite;
+        }
+
+        @keyframes symbolFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        header::after {
+            content: '✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁ ✦ ❋ ✧ ◆ ❈ ✿ ❀ ✾ ❁';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            font-size: 2rem;
+            background: linear-gradient(90deg, #32CD32, #9370DB, #FF4500, #00CED1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: symbolFloat 5s ease infinite reverse;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, #FFD700, #FF1493, #00CED1, #fff, #32CD32, #FF4500);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 30px rgba(255,215,0,0.8));
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        header p {
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-card {
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,215,0,0.1) 10px, rgba(255,215,0,0.1) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,20,147,0.1) 10px, rgba(255,20,147,0.1) 20px),
+                linear-gradient(135deg, #fff 0%, #ffe6f0 50%, #e6f7ff 100%);
+            border: 6px ridge;
+            border-image: linear-gradient(45deg, var(--primary), var(--secondary), var(--tertiary), var(--quaternary), var(--purple), var(--green)) 1;
+            border-radius: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 
+                0 0 0 3px #FFD700,
+                0 0 0 6px #FF1493,
+                0 0 0 9px #00CED1,
+                0 20px 40px rgba(0,0,0,0.3),
+                inset 0 0 30px rgba(255,255,255,0.6);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards, cardFloat 4s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(1deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+        }
+
+        .component-card::before {
+            content: '❋ ✦ ❈ ✧ ◆ ✿';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--gold), var(--primary), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: symbolRotate 10s linear infinite;
+        }
+
+        @keyframes symbolRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .component-card:nth-child(1) { animation-delay: 0.1s; }
+        .component-card:nth-child(2) { animation-delay: 0.2s; }
+        .component-card:nth-child(3) { animation-delay: 0.3s; }
+        .component-card:nth-child(4) { animation-delay: 0.4s; }
+        .component-card:nth-child(5) { animation-delay: 0.5s; }
+        .component-card:nth-child(6) { animation-delay: 0.6s; }
+        .component-card:nth-child(7) { animation-delay: 0.7s; }
+        .component-card:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .component-card:hover {
+            transform: translateY(-15px) scale(1.05) rotate(2deg);
+            box-shadow: 
+                0 0 0 3px #32CD32,
+                0 0 0 6px #FF4500,
+                0 0 0 9px #9370DB,
+                0 30px 60px rgba(0,0,0,0.4),
+                inset 0 0 50px rgba(255,255,255,0.8);
+        }
+
+        .component-header {
+            padding: 1.2rem;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,0.2) 5px, rgba(255,255,255,0.2) 10px),
+                linear-gradient(135deg, var(--primary) 0%, var(--quaternary) 50%, var(--tertiary) 100%);
+            background-size: 100% 100%, 200% 200%;
+            color: #fff;
+            border-bottom: 5px dotted var(--gold);
+            position: relative;
+            animation: headerBgShift 8s ease infinite;
+        }
+
+        @keyframes headerBgShift {
+            0%, 100% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+        }
+
+        .component-header::after {
+            content: '◆ ❈ ✦ ❈ ◆';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--gold), var(--primary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            animation: symbolBounce 2s ease infinite;
+        }
+
+        @keyframes symbolBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-3px); }
+        }
+
+        .component-header h3 { 
+            font-size: 1.3rem; 
+            margin-bottom: 0.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .component-header p { 
+            font-size: 0.75rem; 
+            opacity: 0.9;
+        }
+
+        .component-preview { 
+            flex-grow: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 1.5rem; 
+            min-height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(248,249,250,0.9) 100%);
+        }
+
+        .btn { 
+            padding: 12px 24px; 
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem; 
+            font-weight: 700;
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            border: 3px solid;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            color: var(--text); 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            display: inline-block; 
+            margin: 0.4rem;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover { 
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--quaternary) 100%);
+            border-color: var(--gold);
+            color: white;
+        }
+
+        .btn-secondary { 
+            background: linear-gradient(135deg, var(--tertiary) 0%, var(--green) 100%);
+            border-color: var(--purple);
+            color: white;
+        }
+
+        .btn-tertiary { 
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--quaternary) 100%);
+            border-color: var(--primary);
+            color: var(--text);
+        }
+
+        .neo-card { 
+            width: 200px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border: 4px solid var(--gold);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .neo-card:hover { 
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .neo-card-header { 
+            background: linear-gradient(135deg, var(--purple) 0%, var(--primary) 100%);
+            color: #fff;
+            padding: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .neo-card-body { 
+            padding: 1rem;
+            font-size: 0.8rem;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%);
+        }
+
+        .neo-card-footer { 
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-top: 3px solid var(--gold);
+            text-align: center;
+        }
+
+        .neo-badge { 
+            display: inline-block;
+            padding: 8px 16px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: 3px solid;
+            margin: 0.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .neo-badge:hover { 
+            transform: translateY(-3px) scale(1.1) rotate(5deg);
+        }
+
+        .badge-primary { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--quaternary) 100%);
+            border-color: var(--gold);
+            color: white;
+        }
+
+        .badge-secondary { 
+            background: linear-gradient(135deg, var(--tertiary) 0%, var(--green) 100%);
+            border-color: var(--purple);
+            color: white;
+        }
+
+        .badge-tertiary { 
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--quaternary) 100%);
+            border-color: var(--primary);
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header h1 { font-size: 2rem; }
+            .components-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .neo-card { width: 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✦ MAXIMALISM ✦</h1>
+            <p>Maximalism is an exuberant design philosophy that celebrates abundance, ornamentation, and visual richness. It features vibrant gradients, layered patterns, ornate details, and bold typography. This style embraces "more is more" to create luxurious, eye-catching, and memorable experiences.</p>
+        </header>
+
+        <div class="components-grid">
+            <!-- Buttons -->
+            <div class="component-card">
+                <div class="component-header"><h3>✧ Buttons ✧</h3><p>Opulent interactions</p></div>
+                <div class="component-preview">
+                    <div>
+                        <button class="btn">Default</button>
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-secondary">Secondary</button>
+                        <button class="btn btn-tertiary">Tertiary</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="component-card">
+                <div class="component-header"><h3>✧ Card ✧</h3><p>Luxurious containers</p></div>
+                <div class="component-preview">
+                    <div class="neo-card">
+                        <div class="neo-card-header">MAXIMALIST</div>
+                        <div class="neo-card-body"><p>This card embraces ornate styling with gradients, borders, and shadows.</p></div>
+                        <div class="neo-card-footer"><button class="btn btn-primary">Action</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="component-card">
+                <div class="component-header"><h3>✧ Badges ✧</h3><p>Decorative labels</p></div>
+                <div class="component-preview">
+                    <div>
+                        <span class="neo-badge badge-primary">✦ NEW ✦</span>
+                        <span class="neo-badge badge-secondary">✦ FEATURED ✦</span>
+                        <span class="neo-badge badge-tertiary">✦ LIMITED ✦</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More components can be added here -->
+        </div>
+    </div>
+</body>
+</html>

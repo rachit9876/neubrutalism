@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bauhaus Modernism UI Kit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Futura:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #F5F5F0;
+            font-family: 'Futura', 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: left;
+            padding: 60px 0;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background: #E63946;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            right: 100px;
+            top: 20px;
+            width: 60px;
+            height: 60px;
+            background: #FFD60A;
+            z-index: -1;
+        }
+
+        header h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #666;
+            font-weight: 400;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .component-card {
+            background: #FFFFFF;
+            position: relative;
+            overflow: visible;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 40px;
+            height: 40px;
+            background: #457B9D;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .component-header {
+            background: #1a1a1a;
+            padding: 20px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .component-header h3 {
+            font-size: 24px;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .component-header p {
+            font-size: 12px;
+            color: #999;
+            text-transform: lowercase;
+            margin-top: 5px;
+        }
+
+        .component-preview {
+            padding: 40px 30px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-family: 'Futura', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            margin: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: #E63946;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #1a1a1a;
+        }
+
+        .btn-secondary {
+            background: #457B9D;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #1a1a1a;
+        }
+
+        .btn-tertiary {
+            background: #FFD60A;
+            color: #1a1a1a;
+        }
+
+        .btn-tertiary:hover {
+            background: #1a1a1a;
+            color: #FFFFFF;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1a1a1a;
+            border: 3px solid #1a1a1a;
+        }
+
+        .btn-outline:hover {
+            background: #1a1a1a;
+            color: #FFFFFF;
+        }
+
+        .bauhaus-card {
+            width: 280px;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .bauhaus-card::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 60px;
+            height: 60px;
+            background: #E63946;
+            z-index: 0;
+        }
+
+        .bauhaus-card-header {
+            background: #1a1a1a;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bauhaus-card-body {
+            padding: 30px 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bauhaus-card-footer {
+            padding: 20px;
+            background: #F5F5F0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bauhaus-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: #FFFFFF;
+            border: 3px solid #1a1a1a;
+            font-family: 'Futura', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bauhaus-input:focus {
+            outline: none;
+            border-color: #E63946;
+        }
+
+        .bauhaus-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 5px;
+        }
+
+        .badge-red {
+            background: #E63946;
+            color: #FFFFFF;
+        }
+
+        .badge-blue {
+            background: #457B9D;
+            color: #FFFFFF;
+        }
+
+        .badge-yellow {
+            background: #FFD60A;
+            color: #1a1a1a;
+        }
+
+        .geometric-shape {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            background: #E63946;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .square {
+            width: 80px;
+            height: 80px;
+            background: #457B9D;
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 86px solid #FFD60A;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+        }
+
+        .grid-pattern {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 200px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1;
+            background: #1a1a1a;
+        }
+
+        .grid-item:nth-child(2) { background: #E63946; }
+        .grid-item:nth-child(5) { background: #457B9D; }
+        .grid-item:nth-child(7) { background: #FFD60A; }
+        .grid-item:nth-child(11) { background: #E63946; }
+        .grid-item:nth-child(14) { background: #457B9D; }
+
+        .typography-sample {
+            text-align: left;
+        }
+
+        .typography-sample h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .typography-sample p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .color-blocks {
+            display: flex;
+            gap: 15px;
+        }
+
+        .color-block {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .color-red { background: #E63946; }
+        .color-blue { background: #457B9D; }
+        .color-yellow { background: #FFD60A; color: #1a1a1a; }
+        .color-black { background: #1a1a1a; }
+
+        .asymmetric-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 100px 100px;
+            gap: 15px;
+        }
+
+        .asym-item {
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .asym-item:nth-child(1) { background: #E63946; grid-row: span 2; }
+        .asym-item:nth-child(2) { background: #457B9D; }
+        .asym-item:nth-child(3) { background: #FFD60A; color: #1a1a1a; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 48px; }
+            .components-grid { grid-template-columns: 1fr; }
+            .bauhaus-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BAUHAUS</h1>
+            <p>form follows function</p>
+        </header>
+
+        <div class="components-grid">
+            <!-- Buttons -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Buttons</h3>
+                    <p>functional elements</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-secondary">Secondary</button>
+                        <button class="btn btn-tertiary">Tertiary</button>
+                        <button class="btn btn-outline">Outline</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Card</h3>
+                    <p>structured container</p>
+                </div>
+                <div class="component-preview">
+                    <div class="bauhaus-card">
+                        <div class="bauhaus-card-header">Title</div>
+                        <div class="bauhaus-card-body">
+                            <p>Geometric simplicity meets functional design in this modernist card.</p>
+                        </div>
+                        <div class="bauhaus-card-footer">
+                            <button class="btn btn-primary">Action</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Form</h3>
+                    <p>input fields</p>
+                </div>
+                <div class="component-preview">
+                    <div style="width: 100%; max-width: 280px;">
+                        <input type="text" class="bauhaus-input" placeholder="Name">
+                        <input type="email" class="bauhaus-input" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Badges</h3>
+                    <p>color labels</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <span class="bauhaus-badge badge-red">Red</span>
+                        <span class="bauhaus-badge badge-blue">Blue</span>
+                        <span class="bauhaus-badge badge-yellow">Yellow</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geometric Shapes -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Geometry</h3>
+                    <p>basic shapes</p>
+                </div>
+                <div class="component-preview">
+                    <div class="geometric-shape">
+                        <div class="circle"></div>
+                        <div class="square"></div>
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Pattern -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Grid</h3>
+                    <p>modular system</p>
+                </div>
+                <div class="component-preview">
+                    <div class="grid-pattern">
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Typography</h3>
+                    <p>sans-serif clarity</p>
+                </div>
+                <div class="component-preview">
+                    <div class="typography-sample">
+                        <h2>TYPE</h2>
+                        <p>Clean, geometric letterforms define modernist typography.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Colors</h3>
+                    <p>primary palette</p>
+                </div>
+                <div class="component-preview">
+                    <div class="color-blocks">
+                        <div class="color-block color-red">RED</div>
+                        <div class="color-block color-blue">BLUE</div>
+                        <div class="color-block color-yellow">YELLOW</div>
+                        <div class="color-block color-black">BLACK</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asymmetric Layout -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Asymmetry</h3>
+                    <p>dynamic balance</p>
+                </div>
+                <div class="component-preview">
+                    <div class="asymmetric-layout">
+                        <div class="asym-item">A</div>
+                        <div class="asym-item">B</div>
+                        <div class="asym-item">C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

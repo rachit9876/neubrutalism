@@ -1,0 +1,34 @@
+[[redirects]]
+from = "/neubrutalism"
+to = "/neubrutalism.html"
+status = 200
+
+[[redirects]]
+from = "/maximalism"
+to = "/maximalism.html"
+status = 200
+
+[[redirects]]
+from = "/web1"
+to = "/web1.html"
+status = 200
+
+[[redirects]]
+from = "/y2k"
+to = "/y2k.html"
+status = 200
+
+[[redirects]]
+from = "/skeuomorphism"
+to = "/skeuomorphism.html"
+status = 200
+
+[[redirects]]
+from = "/grunge"
+to = "/grunge.html"
+status = 200
+
+[[redirects]]
+from = "/bauhaus"
+to = "/bauhaus.html"
+status = 200

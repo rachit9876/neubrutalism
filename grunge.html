@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grunge UI Kit - Raw & Distressed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2a2a2a;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>'),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+            font-family: 'Courier Prime', monospace;
+            color: #d4d4d4;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #1a1a1a;
+            border: 3px solid #3a3a3a;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 
+                0 0 0 1px rgba(255,255,255,0.05),
+                0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.01) 10px, rgba(255,255,255,0.01) 20px),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" /></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.03"/></svg>');
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 48px;
+            color: #e0e0e0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 
+                2px 2px 0 #000,
+                4px 4px 10px rgba(0,0,0,0.8);
+            position: relative;
+            filter: contrast(1.2);
+        }
+
+        header p {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .component-card {
+            background: #1f1f1f;
+            border: 2px solid #3a3a3a;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 1px rgba(255,255,255,0.03),
+                0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.05"/></svg>');
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        .component-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.02) 50%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .component-header {
+            background: #0a0a0a;
+            padding: 15px 20px;
+            border-bottom: 2px solid #3a3a3a;
+            position: relative;
+        }
+
+        .component-header h3 {
+            font-family: 'Special Elite', cursive;
+            font-size: 18px;
+            color: #c0c0c0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .component-header p {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .component-preview {
+            padding: 30px 20px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #252525;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-family: 'Special Elite', cursive;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid;
+            background: #2a2a2a;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.2s ease;
+            position: relative;
+            box-shadow: 
+                0 0 0 1px rgba(255,255,255,0.05),
+                3px 3px 0 rgba(0,0,0,0.5);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.1"/></svg>');
+            pointer-events: none;
+        }
+
+        .btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 
+                0 0 0 1px rgba(255,255,255,0.05),
+                2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        .btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        .btn-default {
+            border-color: #555;
+            color: #aaa;
+        }
+
+        .btn-primary {
+            border-color: #8b4513;
+            color: #d2691e;
+            background: #1a1a1a;
+        }
+
+        .btn-secondary {
+            border-color: #2f4f4f;
+            color: #5f9ea0;
+            background: #1a1a1a;
+        }
+
+        .grunge-card {
+            width: 240px;
+            background: #1a1a1a;
+            border: 3px solid #3a3a3a;
+            position: relative;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.5);
+        }
+
+        .grunge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" /></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.08"/></svg>');
+            pointer-events: none;
+        }
+
+        .grunge-card-header {
+            background: #0a0a0a;
+            padding: 15px;
+            font-family: 'Special Elite', cursive;
+            font-size: 16px;
+            color: #b0b0b0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #3a3a3a;
+        }
+
+        .grunge-card-body {
+            padding: 20px;
+            font-size: 13px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .grunge-card-footer {
+            padding: 15px;
+            background: #151515;
+            border-top: 2px solid #3a3a3a;
+            text-align: center;
+        }
+
+        .grunge-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            border: 2px solid #3a3a3a;
+            font-family: 'Courier Prime', monospace;
+            font-size: 13px;
+            color: #aaa;
+            margin: 8px 0;
+            box-shadow: inset 3px 3px 5px rgba(0,0,0,0.5);
+        }
+
+        .grunge-input:focus {
+            outline: none;
+            border-color: #555;
+            background: #151515;
+        }
+
+        .grunge-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            font-family: 'Special Elite', cursive;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid;
+            margin: 5px;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .grunge-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="1.0" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.15"/></svg>');
+            pointer-events: none;
+        }
+
+        .badge-rust {
+            background: #2a1a0a;
+            border-color: #8b4513;
+            color: #d2691e;
+        }
+
+        .badge-steel {
+            background: #1a1a1a;
+            border-color: #555;
+            color: #999;
+        }
+
+        .badge-moss {
+            background: #1a2a1a;
+            border-color: #2f4f2f;
+            color: #6b8e23;
+        }
+
+        .tape {
+            background: rgba(200,180,140,0.3);
+            border: 1px solid rgba(200,180,140,0.5);
+            padding: 15px;
+            position: relative;
+            box-shadow: 
+                0 2px 5px rgba(0,0,0,0.3),
+                inset 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .tape::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 60px;
+            height: 20px;
+            background: rgba(200,180,140,0.4);
+            border: 1px solid rgba(200,180,140,0.6);
+            transform: rotate(-5deg);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .tape::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            width: 60px;
+            height: 20px;
+            background: rgba(200,180,140,0.4);
+            border: 1px solid rgba(200,180,140,0.6);
+            transform: rotate(5deg);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .tape p {
+            color: #aaa;
+            font-size: 13px;
+            font-family: 'Special Elite', cursive;
+        }
+
+        .stamp {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 3px dashed #8b4513;
+            background: rgba(139,69,19,0.1);
+            color: #d2691e;
+            font-family: 'Special Elite', cursive;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(-5deg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .components-grid { grid-template-columns: 1fr; }
+            .grunge-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GRUNGE</h1>
+            <p>Raw • Distressed • Weathered</p>
+        </header>
+
+        <div class="components-grid">
+            <!-- Buttons -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Buttons</h3>
+                    <p>Worn & weathered</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <button class="btn btn-default">Default</button>
+                        <button class="btn btn-primary">Rust</button>
+                        <button class="btn btn-secondary">Steel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Card</h3>
+                    <p>Distressed container</p>
+                </div>
+                <div class="component-preview">
+                    <div class="grunge-card">
+                        <div class="grunge-card-header">GRUNGE</div>
+                        <div class="grunge-card-body">
+                            <p>This card features distressed textures and worn aesthetics.</p>
+                        </div>
+                        <div class="grunge-card-footer">
+                            <button class="btn btn-primary">Action</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Form</h3>
+                    <p>Raw input fields</p>
+                </div>
+                <div class="component-preview">
+                    <div style="width: 100%; max-width: 250px;">
+                        <input type="text" class="grunge-input" placeholder="Username">
+                        <input type="password" class="grunge-input" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Badges</h3>
+                    <p>Weathered labels</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <span class="grunge-badge badge-rust">RUST</span>
+                        <span class="grunge-badge badge-steel">STEEL</span>
+                        <span class="grunge-badge badge-moss">MOSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tape Effect -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Tape Effect</h3>
+                    <p>Masking tape style</p>
+                </div>
+                <div class="component-preview">
+                    <div class="tape">
+                        <p>Content held with tape</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stamp -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Stamp</h3>
+                    <p>Rubber stamp effect</p>
+                </div>
+                <div class="component-preview">
+                    <div class="stamp">APPROVED</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

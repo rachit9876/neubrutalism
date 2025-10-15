@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neubrutalism UI Kit - Enhanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary: #000;
+            --secondary: #FF3366;
+            --tertiary: #00CC99;
+            --quaternary: #FFD23F;
+            --background: #f5f5f5;
+            --card-bg: #ffffff;
+            --text: #1a1a1a;
+            --shadow-color: #333;
+            --shadow: 4px 4px 0 var(--shadow-color);
+            --border: 2px solid #000;
+        }
+
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        #cursor span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            display: block;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            cursor: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background-color: var(--quaternary);
+            color: #000;
+        }
+        ::-moz-selection {
+            background-color: var(--quaternary);
+            color: #000;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 12px;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Added subtle background pattern */
+            background-image: radial-gradient(var(--text) 0.5px, transparent 0.5px);
+            background-size: 15px 15px;
+            background-attachment: fixed;
+        }
+
+
+
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem 1rem;
+            background-color: var(--card-bg);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+        }
+
+
+        header p {
+            font-size: 0.85rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-card {
+            background-color: var(--card-bg);
+            border: var(--border);
+            border-radius: 4px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .component-card:nth-child(1) { animation-delay: 0.1s; }
+        .component-card:nth-child(2) { animation-delay: 0.2s; }
+        .component-card:nth-child(3) { animation-delay: 0.3s; }
+        .component-card:nth-child(4) { animation-delay: 0.4s; }
+        .component-card:nth-child(5) { animation-delay: 0.5s; }
+        .component-card:nth-child(6) { animation-delay: 0.6s; }
+        .component-card:nth-child(7) { animation-delay: 0.7s; }
+        .component-card:nth-child(8) { animation-delay: 0.8s; }
+        .component-card:nth-child(9) { animation-delay: 0.9s; }
+        .component-card:nth-child(10) { animation-delay: 1.0s; }
+        .component-card:nth-child(11) { animation-delay: 1.1s; }
+        .component-card:nth-child(12) { animation-delay: 1.2s; }
+        .component-card:nth-child(13) { animation-delay: 1.3s; }
+        .component-card:nth-child(14) { animation-delay: 1.4s; }
+        .component-card:nth-child(15) { animation-delay: 1.5s; }
+        .component-card:nth-child(16) { animation-delay: 1.6s; }
+        .component-card:nth-child(17) { animation-delay: 1.7s; }
+        .component-card:nth-child(18) { animation-delay: 1.8s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced hover effect */
+        .component-card:hover {
+            transform: translate(-2px, -2px);
+        }
+
+        .component-header {
+            padding: 0.5rem;
+            background-color: var(--primary);
+            color: var(--card-bg);
+            border-bottom: var(--border);
+        }
+
+
+        .component-header h3 { font-size: 0.9rem; margin-bottom: 0.15rem; }
+        .component-header p { font-size: 0.65rem; opacity: 0.8; }
+        .component-preview { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 0.75rem; min-height: 120px; }
+        .component-code { background-color: #f0f0f0; border-top: var(--border); font-family: 'Courier New', monospace; font-size: 0.7rem; overflow: hidden; }
+
+        .component-code-header { padding: 0.6rem 0.8rem; background-color: var(--primary); color: var(--card-bg); cursor: none; display: flex; justify-content: space-between; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 1px; transition: background-color 0.2s ease; }
+
+        .component-code-header:hover { background-color: #333; }
+
+        .component-code-icon { transition: transform 0.2s ease; }
+        .component-code.active .component-code-icon { transform: rotate(180deg); }
+        .component-code-body { padding: 0 1rem; overflow: hidden; max-height: 0; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .component-code.active .component-code-body { max-height: 500px; padding: 1rem; }
+
+        /* Button Components */
+        .btn { padding: 6px 12px; font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; border: var(--border); background-color: var(--card-bg); color: var(--text); cursor: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease; border-radius: 4px; display: inline-block; margin: 0.3rem; position: relative; overflow: hidden; }
+
+        .btn:hover { box-shadow: var(--shadow); }
+        .btn:active { transform: translate(2px, 2px); box-shadow: var(--shadow); }
+        
+        .btn-primary { background-color: var(--secondary); color: white; }
+        .btn-secondary { background-color: var(--tertiary); color: white; }
+        .btn-tertiary { background-color: var(--quaternary); color: var(--text); }
+
+
+        /* Card Component */
+        .neo-card { width: 160px; background-color: var(--card-bg); border: var(--border); border-radius: 4px; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease; }
+        .neo-card:hover { box-shadow: var(--shadow); }
+        .neo-card-header { background-color: var(--primary); color: var(--card-bg); padding: 0.6rem; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 1px; }
+
+        .neo-card-body { padding: 0.6rem; font-size: 0.7rem; }
+        .neo-card-footer { padding: 0.6rem; background-color: #f0f0f0; border-top: var(--border); }
+
+
+        /* Form Components */
+        .neo-form { width: 100%; max-width: 200px; }
+        .neo-form-group { margin-bottom: 1rem; }
+        .neo-label { display: block; margin-bottom: 0.4rem; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 1px; }
+        .neo-input { width: 100%; padding: 8px; border: var(--border); font-family: 'Roboto Mono', monospace; font-size: 0.8rem; background-color: var(--card-bg); color: var(--text); border-radius: 4px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease; cursor: none; }
+        .neo-input:focus { outline: none; box-shadow: var(--shadow); border-color: var(--secondary); }
+
+        /* Alert Component */
+        .neo-alert { padding: 0.8rem; border: var(--border); border-radius: 4px; display: flex; align-items: center; max-width: 260px; font-size: 0.85rem; margin-bottom: 1rem; animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        .neo-alert-icon { margin-right: 0.8rem; font-size: 1.1rem; }
+        .neo-alert-success { background-color: rgba(0, 204, 153, 0.2); border-color: var(--tertiary); color: var(--tertiary); }
+        .neo-alert-warning { background-color: rgba(255, 210, 63, 0.2); border-color: var(--quaternary); color: #997300; }
+
+        .neo-alert-error { background-color: rgba(255, 51, 102, 0.2); border-color: var(--secondary); color: var(--secondary); }
+        
+        /* Badge Component */
+        .neo-badge { display: inline-block; padding: 4px 10px; font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 1px; border-radius: 4px; border: var(--border); margin: 0.25rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+        .neo-badge:hover { transform: translateY(-2px) scale(1.05); }
+        .badge-primary { background-color: var(--secondary); color: white; }
+        .badge-secondary { background-color: var(--tertiary); color: white; }
+        .badge-tertiary { background-color: var(--quaternary); color: #000; }
+
+        /* Progress Bar Component */
+        .neo-progress { width: 100%; height: 30px; background-color: #f0f0f0; border: var(--border); border-radius: 4px; overflow: hidden; }
+
+        .neo-progress-bar { height: 100%; background-color: var(--secondary); width: 0%; /* Animate from 0 */ display: flex; align-items: center; justify-content: center; color: white; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* Tabs Component */
+        .neo-tabs { width: 100%; max-width: 300px; }
+        .neo-tab-nav { display: flex; border-bottom: var(--border); }
+        .neo-tab-btn { flex: 1; padding: 12px; background-color: var(--card-bg); color: var(--text); border: none; border-top: var(--border); border-left: var(--border); font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; cursor: none; transition: all 0.2s ease; }
+        .neo-tab-btn:last-child { border-right: var(--border); }
+        .neo-tab-btn.active { background-color: var(--secondary); color: white; transform: translateY(4px); }
+        .neo-tab-content { padding: 1rem; border-left: var(--border); border-right: var(--border); border-bottom: var(--border); }
+        .neo-tab-pane { display: none; opacity: 0; animation: fadeIn 0.3s ease forwards; }
+        .neo-tab-pane.active { display: block; }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* Modal Component */
+        .neo-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .neo-modal.show { opacity: 1; pointer-events: auto; }
+        .neo-modal-content { background-color: var(--card-bg); border: var(--border); border-radius: 4px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: all 0.3s ease; box-shadow: var(--shadow); }
+        .neo-modal.show .neo-modal-content { transform: scale(1); }
+        .neo-modal-header { padding: 1rem; background-color: var(--primary); color: var(--card-bg); display: flex; justify-content: space-between; align-items: center; }
+
+        .neo-modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; }
+        .neo-modal-close { background: none; border: none; color: var(--card-bg); font-size: 1.5rem; cursor: none; transition: transform 0.2s ease; }
+
+        .neo-modal-close:hover { transform: rotate(90deg); }
+        .neo-modal-body { padding: 1rem; }
+        .neo-modal-footer { padding: 1rem; background-color: #f0f0f0; border-top: var(--border); display: flex; justify-content: flex-end; }
+
+
+        /* Accordion Component */
+        .neo-accordion { width: 100%; max-width: 300px; }
+        .neo-accordion-item { margin-bottom: 0.5rem; border: var(--border); border-radius: 4px; overflow: hidden; }
+        .neo-accordion-header { padding: 1rem; background-color: var(--primary); color: var(--card-bg); cursor: none; display: flex; justify-content: space-between; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; transition: background-color 0.2s ease; }
+
+        .neo-accordion-header:hover { background-color: #333; }
+
+        .neo-accordion-icon { transition: transform 0.2s ease; }
+        .neo-accordion-item.active .neo-accordion-icon { transform: rotate(180deg); }
+        .neo-accordion-body { padding: 0 1rem; background-color: var(--card-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .neo-accordion-item.active .neo-accordion-body { max-height: 300px; padding: 1rem; }
+
+        /* Pagination Component */
+        .neo-pagination { display: flex; justify-content: center; }
+        .neo-page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: var(--card-bg); color: var(--text); border: var(--border); margin: 0 0.25rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; cursor: none; transition: all 0.2s ease; }
+        .neo-page-btn.active { background-color: var(--secondary); color: white; }
+
+        /* Tooltip Component */
+        .neo-tooltip-container { position: relative; display: inline-block; }
+        .neo-tooltip { position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background-color: var(--primary); color: var(--card-bg); padding: 8px 12px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity 0.2s ease; z-index: 100; }
+
+        .neo-tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 8px; border-style: solid; border-color: var(--primary) transparent transparent transparent; }
+        .neo-tooltip-container:hover .neo-tooltip { opacity: 1; visibility: visible; }
+
+        /* Toggle Switch Component - NEW */
+        .neo-switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .neo-switch input { opacity: 0; width: 0; height: 0; }
+        .switch-slider { position: absolute; cursor: none; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 4px; border: var(--border); }
+        .switch-slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 0px; bottom: -1px; background-color: white; transition: .4s; border-radius: 2px; border: var(--border); }
+        input:checked + .switch-slider { background-color: var(--tertiary); }
+        input:checked + .switch-slider:before { transform: translateX(26px); }
+
+        /* Color Palette */
+        .color-palette { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .color-swatch { width: 80px; height: 80px; border: var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px; transition: all 0.2s ease; cursor: none; }
+
+        /* Dropdown Component */
+        .neo-dropdown { position: relative; display: inline-block; }
+        .neo-dropdown-btn { padding: 8px 16px; background-color: var(--card-bg); color: var(--text); border: var(--border); cursor: none; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .neo-dropdown-content { position: absolute; top: 100%; left: 0; background-color: var(--card-bg); border: var(--border); min-width: 160px; z-index: 100; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease; }
+        .neo-dropdown.active .neo-dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); box-shadow: var(--shadow); }
+        .neo-dropdown-item { padding: 8px 12px; cursor: none; font-size: 0.8rem; border-bottom: 2px solid var(--primary); }
+        .neo-dropdown-item:last-child { border-bottom: none; }
+        .neo-dropdown-item:hover { background-color: var(--secondary); color: white; }
+
+        /* Breadcrumb Component */
+        .neo-breadcrumb { display: flex; align-items: center; font-size: 0.8rem; }
+        .neo-breadcrumb-item { color: var(--text); text-decoration: none; padding: 4px 8px; }
+        .neo-breadcrumb-item:hover { color: var(--secondary); }
+        .neo-breadcrumb-separator { margin: 0 4px; font-weight: bold; }
+        .neo-breadcrumb-item.active { color: var(--secondary); font-weight: bold; }
+
+        /* Slider Component */
+        .neo-slider { width: 200px; height: 8px; background-color: #ccc; border: var(--border); position: relative; cursor: none; }
+        .neo-slider-thumb { width: 20px; height: 20px; background-color: var(--secondary); border: var(--border); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: none; transition: all 0.2s ease; }
+        .neo-slider-thumb:hover { transform: scale(1.2); }
+        .neo-slider-fill { height: 100%; background-color: var(--secondary); transition: width 0.2s ease; }
+
+        /* Checkbox Component */
+        .neo-checkbox { display: flex; align-items: center; gap: 8px; cursor: none; margin: 4px 0; }
+        .neo-checkbox input { display: none; }
+        .neo-checkbox-box { width: 20px; height: 20px; border: var(--border); background-color: var(--card-bg); display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .neo-checkbox input:checked + .neo-checkbox-box { background-color: var(--secondary); }
+        .neo-checkbox-box::after { content: '✓'; color: white; font-weight: bold; opacity: 0; transition: opacity 0.2s ease; }
+        .neo-checkbox input:checked + .neo-checkbox-box::after { opacity: 1; }
+
+        /* Radio Component */
+        .neo-radio { display: flex; align-items: center; gap: 8px; cursor: none; margin: 4px 0; }
+        .neo-radio input { display: none; }
+        .neo-radio-circle { width: 20px; height: 20px; border: var(--border); border-radius: 50%; background-color: var(--card-bg); display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .neo-radio input:checked + .neo-radio-circle { background-color: var(--secondary); }
+        .neo-radio-circle::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background-color: white; opacity: 0; transition: opacity 0.2s ease; }
+        .neo-radio input:checked + .neo-radio-circle::after { opacity: 1; }
+
+        /* Notification Component */
+        .neo-notification { position: fixed; top: 20px; right: 20px; background-color: var(--card-bg); border: var(--border); padding: 12px 16px; max-width: 300px; z-index: 1000; transform: translateX(100%); transition: all 0.3s ease; box-shadow: var(--shadow); }
+        .neo-notification.show { transform: translateX(0); }
+        .neo-notification-header { display: flex; justify-content: between; align-items: center; margin-bottom: 8px; }
+        .neo-notification-title { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px; }
+        .neo-notification-close { background: none; border: none; font-size: 1.2rem; cursor: none; margin-left: auto; }
+        .neo-notification-body { font-size: 0.8rem; }
+
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header { padding: 1.5rem 1rem; margin-bottom: 2rem; }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1rem; }
+            .components-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .btn { padding: 10px 20px; font-size: 1rem; margin: 0.25rem; }
+            .neo-card, .neo-form, .neo-tabs, .neo-accordion { width: 100%; max-width: 100%; }
+            .neo-alert { max-width: 100%; flex-direction: column; text-align: center; }
+            .neo-alert-icon { margin-right: 0; margin-bottom: 0.5rem; }
+            .neo-modal-content { width: 95%; margin: 1rem; }
+            .neo-modal-footer { flex-direction: column; gap: 0.5rem; }
+            .neo-modal-footer .btn { width: 100%; }
+            .color-swatch { width: 60px; height: 60px; font-size: 0.8rem; }
+            .component-preview { padding: 1rem; }
+            .component-code { font-size: 0.7rem; }
+        }
+        @media (max-width: 480px) {
+            header h1 { font-size: 2rem; }
+
+            .neo-page-btn { width: 35px; height: 35px; font-size: 1rem; }
+            .neo-tab-btn { font-size: 1rem; padding: 10px 8px; }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            #cursor { display: none !important; }
+            * { cursor: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+    <div class="container">
+        <header>
+            <h1>NEUBRUTALISM</h1>
+            <p>Neubrutalism is a bold web design trend inspired by Brutalist architecture. It features raw aesthetics, thick borders, harsh drop shadows, vibrant colors, and unapologetic typography. This anti-minimalist style embraces visual weight and high contrast to create memorable, attention-grabbing interfaces.</p>
+        </header>
+
+        <div class="components-grid">
+            <!-- Buttons -->
+            <div class="component-card">
+                <div class="component-header"><h3>Buttons</h3><p>Click me if you dare</p></div>
+                <div class="component-preview">
+                    <div>
+                        <button class="btn">Default</button>
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-secondary">Secondary</button>
+                        <button class="btn btn-tertiary">Tertiary</button>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;button class="btn"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;</pre></div></div>
+            </div>
+            <!-- Card -->
+            <div class="component-card">
+                <div class="component-header"><h3>Card</h3><p>Content in a box</p></div>
+                <div class="component-preview">
+                    <div class="neo-card">
+                        <div class="neo-card-header">BRUTALIST</div>
+                        <div class="neo-card-body"><p>This is a card component with bold borders and shadows. Select this text.</p></div>
+                        <div class="neo-card-footer"><button class="btn btn-primary">Action</button></div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-card"&gt;
+  &lt;div class="neo-card-header"&gt;...&lt;/div&gt;
+  &lt;div class="neo-card-body"&gt;...&lt;/div&gt;
+  &lt;div class="neo-card-footer"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Form -->
+            <div class="component-card">
+                <div class="component-header"><h3>Form</h3><p>Input with attitude</p></div>
+                <div class="component-preview">
+                    <form class="neo-form">
+                        <div class="neo-form-group"><label class="neo-label">Name</label><input type="text" class="neo-input" placeholder="Enter your name"></div>
+                        <div class="neo-form-group"><label class="neo-label">Email</label><input type="email" class="neo-input" placeholder="Enter your email"></div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;form class="neo-form"&gt;
+  &lt;div class="neo-form-group"&gt;
+    &lt;label class="neo-label"&gt;Name&lt;/label&gt;
+    &lt;input type="text" class="neo-input"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre></div></div>
+            </div>
+            <!-- Alerts -->
+            <div class="component-card">
+                <div class="component-header"><h3>Alerts</h3><p>Loud and clear messages</p></div>
+                <div class="component-preview">
+                    <div>
+                        <div class="neo-alert neo-alert-success"><div class="neo-alert-icon"><i class="fas fa-check-circle"></i></div><div>Success! Your action was completed.</div></div>
+                        <div class="neo-alert neo-alert-warning"><div class="neo-alert-icon"><i class="fas fa-exclamation-triangle"></i></div><div>Warning! Please review your input.</div></div>
+                        <div class="neo-alert neo-alert-error"><div class="neo-alert-icon"><i class="fas fa-times-circle"></i></div><div>Error! Something went wrong.</div></div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-alert neo-alert-success"&gt;
+  &lt;div class="neo-alert-icon"&gt;...&lt;/div&gt;
+  &lt;div&gt;Success!&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Badges -->
+            <div class="component-card">
+                <div class="component-header"><h3>Badges</h3><p>Labels with impact</p></div>
+                <div class="component-preview">
+                    <div><span class="neo-badge badge-primary">NEW</span><span class="neo-badge badge-secondary">FEATURED</span><span class="neo-badge badge-tertiary">LIMITED</span></div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;span class="neo-badge badge-primary"&gt;NEW&lt;/span&gt;</pre></div></div>
+            </div>
+            <!-- Progress Bar -->
+            <div class="component-card">
+                <div class="component-header"><h3>Progress Bar</h3><p>Track with style</p></div>
+                <div class="component-preview">
+                    <div class="neo-progress"><div class="neo-progress-bar" data-width="65%">65%</div></div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-progress"&gt;
+  &lt;div class="neo-progress-bar" style="width: 65%;"&gt;
+    65%
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Toggle Switch (NEW) -->
+             <div class="component-card">
+                <div class="component-header"><h3>Toggle Switch</h3><p>On or off, decisively</p></div>
+                <div class="component-preview">
+                     <label class="neo-switch">
+                        <input type="checkbox" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;label class="neo-switch"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;span class="switch-slider"&gt;&lt;/span&gt;
+&lt;/label&gt;</pre></div></div>
+            </div>
+            <!-- Tabs -->
+            <div class="component-card">
+                <div class="component-header"><h3>Tabs</h3><p>Organize aggressively</p></div>
+                <div class="component-preview">
+                    <div class="neo-tabs">
+                        <div class="neo-tab-nav"><button class="neo-tab-btn active" data-tab="tab1">TAB 1</button><button class="neo-tab-btn" data-tab="tab2">TAB 2</button><button class="neo-tab-btn" data-tab="tab3">TAB 3</button></div>
+                        <div class="neo-tab-content">
+                            <div class="neo-tab-pane active" id="tab1"><p>Content for Tab 1. Select this text to see the yellow-black selection style.</p></div>
+                            <div class="neo-tab-pane" id="tab2"><p>Content for Tab 2. Try selecting this text too!</p></div>
+                            <div class="neo-tab-pane" id="tab3"><p>Content for Tab 3. All text selections are now yellow-black.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-tabs"&gt; ... &lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Modal -->
+            <div class="component-card">
+                <div class="component-header"><h3>Modal</h3><p>In-your-face dialogs</p></div>
+                <div class="component-preview"><button class="btn btn-primary" id="openModal">Open Modal</button></div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;button id="openModal"&gt;Open&lt;/button&gt;
+&lt;div class="neo-modal"&gt;...&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Accordion -->
+            <div class="component-card">
+                <div class="component-header"><h3>Accordion</h3><p>Collapsible attitude</p></div>
+                <div class="component-preview">
+                    <div class="neo-accordion">
+                        <div class="neo-accordion-item active">
+                            <div class="neo-accordion-header"><span>SECTION 1</span><span class="neo-accordion-icon"><i class="fas fa-chevron-down"></i></span></div>
+                            <div class="neo-accordion-body"><p>Content for section 1. Select this text to see the new style.</p></div>
+                        </div>
+                        <div class="neo-accordion-item">
+                            <div class="neo-accordion-header"><span>SECTION 2</span><span class="neo-accordion-icon"><i class="fas fa-chevron-down"></i></span></div>
+                            <div class="neo-accordion-body"><p>Content for section 2. Try selecting this text too!</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-accordion"&gt; ... &lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Pagination -->
+            <div class="component-card">
+                <div class="component-header"><h3>Pagination</h3><p>Navigate with boldness</p></div>
+                <div class="component-preview">
+                    <div class="neo-pagination">
+                        <button class="neo-page-btn"><i class="fas fa-chevron-left"></i></button><button class="neo-page-btn">1</button><button class="neo-page-btn active">2</button><button class="neo-page-btn">3</button><button class="neo-page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-pagination"&gt; ... &lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Tooltip -->
+            <div class="component-card">
+                <div class="component-header"><h3>Tooltip</h3><p>Helpful hints with style</p></div>
+                <div class="component-preview">
+                    <div class="neo-tooltip-container"><button class="btn btn-primary">Hover me</button><div class="neo-tooltip">This is a tooltip!</div></div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-tooltip-container"&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+  &lt;div class="neo-tooltip"&gt;Tooltip!&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Color Palette -->
+            <div class="component-card">
+                <div class="component-header"><h3>Color Palette</h3><p>Bold colors for bold designs</p></div>
+                <div class="component-preview">
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background-color: #000;">#000</div>
+                        <div class="color-swatch" style="background-color: #FF3366;">#FF3366</div>
+                        <div class="color-swatch" style="background-color: #00CC99;">#00CC99</div>
+                        <div class="color-swatch" style="background-color: #FFD23F; color: #000;">#FFD23F</div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="color-swatch"&gt;#000&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Dropdown -->
+            <div class="component-card">
+                <div class="component-header"><h3>Dropdown</h3><p>Select with authority</p></div>
+                <div class="component-preview">
+                    <div class="neo-dropdown" id="dropdown1">
+                        <div class="neo-dropdown-btn">SELECT OPTION <i class="fas fa-chevron-down"></i></div>
+                        <div class="neo-dropdown-content">
+                            <div class="neo-dropdown-item">Option 1</div>
+                            <div class="neo-dropdown-item">Option 2</div>
+                            <div class="neo-dropdown-item">Option 3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-dropdown"&gt;
+  &lt;div class="neo-dropdown-btn"&gt;SELECT&lt;/div&gt;
+  &lt;div class="neo-dropdown-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Breadcrumb -->
+            <div class="component-card">
+                <div class="component-header"><h3>Breadcrumb</h3><p>Navigate the path</p></div>
+                <div class="component-preview">
+                    <nav class="neo-breadcrumb">
+                        <a href="#" class="neo-breadcrumb-item">HOME</a>
+                        <span class="neo-breadcrumb-separator">/</span>
+                        <a href="#" class="neo-breadcrumb-item">COMPONENTS</a>
+                        <span class="neo-breadcrumb-separator">/</span>
+                        <span class="neo-breadcrumb-item active">BREADCRUMB</span>
+                    </nav>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;nav class="neo-breadcrumb"&gt;
+  &lt;a class="neo-breadcrumb-item"&gt;HOME&lt;/a&gt;
+  &lt;span class="neo-breadcrumb-separator"&gt;/&lt;/span&gt;
+&lt;/nav&gt;</pre></div></div>
+            </div>
+            <!-- Slider -->
+            <div class="component-card">
+                <div class="component-header"><h3>Slider</h3><p>Slide with precision</p></div>
+                <div class="component-preview">
+                    <div class="neo-slider" id="slider1">
+                        <div class="neo-slider-fill" style="width: 60%;"></div>
+                        <div class="neo-slider-thumb" style="left: 60%; top: 50%; transform: translate(-50%, -50%);"></div>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 0.8rem;">Value: <span id="sliderValue">60</span>%</div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-slider"&gt;
+  &lt;div class="neo-slider-fill"&gt;&lt;/div&gt;
+  &lt;div class="neo-slider-thumb"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+            <!-- Checkbox & Radio -->
+            <div class="component-card">
+                <div class="component-header"><h3>Checkbox & Radio</h3><p>Choose your options</p></div>
+                <div class="component-preview">
+                    <div>
+                        <label class="neo-checkbox">
+                            <input type="checkbox" checked>
+                            <div class="neo-checkbox-box"></div>
+                            <span>Checkbox 1</span>
+                        </label>
+                        <label class="neo-checkbox">
+                            <input type="checkbox">
+                            <div class="neo-checkbox-box"></div>
+                            <span>Checkbox 2</span>
+                        </label>
+                        <label class="neo-radio">
+                            <input type="radio" name="radio1" checked>
+                            <div class="neo-radio-circle"></div>
+                            <span>Radio 1</span>
+                        </label>
+                        <label class="neo-radio">
+                            <input type="radio" name="radio1">
+                            <div class="neo-radio-circle"></div>
+                            <span>Radio 2</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;label class="neo-checkbox"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;div class="neo-checkbox-box"&gt;&lt;/div&gt;
+&lt;/label&gt;</pre></div></div>
+            </div>
+            <!-- Notification -->
+            <div class="component-card">
+                <div class="component-header"><h3>Notification</h3><p>Alert with style</p></div>
+                <div class="component-preview">
+                    <button class="btn btn-primary" id="showNotification">Show Notification</button>
+                </div>
+                <div class="component-code"><div class="component-code-header"><span>CODE</span><span class="component-code-icon"><i class="fas fa-chevron-down"></i></span></div><div class="component-code-body"><pre>&lt;div class="neo-notification"&gt;
+  &lt;div class="neo-notification-header"&gt;...&lt;/div&gt;
+  &lt;div class="neo-notification-body"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (hidden by default) -->
+    <div class="neo-modal" id="modal">
+        <div class="neo-modal-content">
+            <div class="neo-modal-header">
+                <div class="neo-modal-title">NEUBRUTALIST MODAL</div>
+                <button class="neo-modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="neo-modal-body">
+                <p>This is a modal dialog with the neubrutalist design philosophy. It's bold, in-your-face, and impossible to ignore.</p>
+                <p>With thick borders and harsh shadows, this modal demands attention. Try selecting this text to see the yellow-black selection style.</p>
+            </div>
+            <div class="neo-modal-footer">
+                <button class="btn" id="cancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+
+        // --- Tab functionality ---
+        document.querySelectorAll('.neo-tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                const tabContainer = button.closest('.neo-tabs');
+                
+                tabContainer.querySelectorAll('.neo-tab-btn').forEach(btn => btn.classList.remove('active'));
+                tabContainer.querySelectorAll('.neo-tab-pane').forEach(pane => pane.classList.remove('active'));
+                
+                button.classList.add('active');
+                tabContainer.querySelector(`#${tabId}`).classList.add('active');
+            });
+        });
+
+        // --- Accordion functionality ---
+        document.querySelectorAll('.neo-accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                // Optional: close all others when one is opened
+                // item.closest('.neo-accordion').querySelectorAll('.neo-accordion-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+        // --- Modal functionality ---
+        const openModalBtn = document.getElementById('openModal');
+        const modal = document.getElementById('modal');
+        if (openModalBtn && modal) {
+            const closeModalBtns = modal.querySelectorAll('#closeModal, #cancelBtn, #confirmBtn');
+            const openModal = () => {
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('show'), 10);
+            };
+            const closeModal = () => {
+                modal.classList.remove('show');
+                setTimeout(() => { modal.style.display = 'none'; }, 300);
+            };
+            openModalBtn.addEventListener('click', openModal);
+            closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+             window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('show')) {
+                    closeModal();
+                }
+            });
+        }
+        
+        // --- Component code accordion ---
+        document.querySelectorAll('.component-code-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.parentElement.classList.toggle('active');
+            });
+        });
+        
+        // --- Progress Bar Animation on Scroll ---
+        const progressBar = document.querySelector('.neo-progress-bar');
+        if (progressBar) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.dataset.width;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(progressBar);
+        }
+
+        // --- Dropdown functionality ---
+        document.querySelectorAll('.neo-dropdown').forEach(dropdown => {
+            const btn = dropdown.querySelector('.neo-dropdown-btn');
+            btn.addEventListener('click', () => {
+                dropdown.classList.toggle('active');
+            });
+            dropdown.querySelectorAll('.neo-dropdown-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    btn.childNodes[0].textContent = item.textContent + ' ';
+                    dropdown.classList.remove('active');
+                });
+            });
+        });
+
+        // --- Slider functionality ---
+        const slider = document.getElementById('slider1');
+        if (slider) {
+            const thumb = slider.querySelector('.neo-slider-thumb');
+            const fill = slider.querySelector('.neo-slider-fill');
+            const valueDisplay = document.getElementById('sliderValue');
+            let isDragging = false;
+
+            const updateSlider = (e) => {
+                const rect = slider.getBoundingClientRect();
+                const percent = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+                thumb.style.left = percent + '%';
+                thumb.style.transform = 'translate(-50%, -50%)';
+                fill.style.width = percent + '%';
+                valueDisplay.textContent = Math.round(percent);
+            };
+
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSlider(e);
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) updateSlider(e);
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+
+        // --- Notification functionality ---
+        const showNotificationBtn = document.getElementById('showNotification');
+        if (showNotificationBtn) {
+            showNotificationBtn.addEventListener('click', () => {
+                const notification = document.createElement('div');
+                notification.className = 'neo-notification';
+                notification.innerHTML = `
+                    <div class="neo-notification-header">
+                        <div class="neo-notification-title">NOTIFICATION</div>
+                        <button class="neo-notification-close">&times;</button>
+                    </div>
+                    <div class="neo-notification-body">
+                        This is a neubrutalist notification! Bold and impossible to ignore.
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => notification.classList.add('show'), 10);
+                
+                const closeBtn = notification.querySelector('.neo-notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                });
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.neo-dropdown')) {
+                document.querySelectorAll('.neo-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById("cursor");
+        const amount = 20;
+        const width = 26;
+        let lastFrame = 0;
+        let mousePosition = { x: window.innerWidth / 2 - width / 2, y: window.innerHeight / 2 - width / 2 };
+        let targetPosition = { x: window.innerWidth / 2 - width / 2, y: window.innerHeight / 2 - width / 2 };
+        let dots = [];
+        let isMouseOnPage = false;
+        const maxSpeed = 10;
+        let angle = Math.random() * Math.PI * 2;
+        let randomVelocity = { x: Math.cos(angle) * maxSpeed, y: Math.sin(angle) * maxSpeed };
+        let randomTimer = 0;
+        const textElements = [];
+        let currentHoverElement = null;
+        let currentScaleMultiplier = 1;
+
+        class Dot {
+            constructor(index = 0) {
+                this.index = index;
+                this.x = 0;
+                this.y = 0;
+                this.baseScale = 1 - 0.05 * index;
+                this.element = document.createElement("span");
+                gsap.set(this.element, { scale: this.baseScale, transformOrigin: "center" });
+                cursor.appendChild(this.element);
+            }
+
+            draw(delta) {
+                gsap.set(this.element, { x: this.x, y: this.y });
+            }
+
+            animateScale(scaleMultiplier) {
+                const targetScale = this.baseScale * scaleMultiplier;
+                gsap.to(this.element, { scale: targetScale, duration: 0.3, ease: "power2.out" });
+            }
+
+            animateColor(color) {
+                gsap.to(this.element, { backgroundColor: color, duration: 0.3, ease: "power2.out" });
+            }
+        }
+
+        function initCursor() {
+            window.addEventListener("mousemove", onMouseMove);
+            window.addEventListener("touchmove", onTouchMove);
+            window.addEventListener("mousedown", onMouseDown);
+            window.addEventListener("mouseup", onMouseUp);
+            document.addEventListener("mouseleave", onMouseLeave);
+            document.addEventListener("mouseenter", onMouseEnter);
+
+            lastFrame += new Date();
+            buildDots();
+            render();
+        }
+
+        function buildDots() {
+            for (let i = 0; i < amount; i++) {
+                let dot = new Dot(i);
+                dots.push(dot);
+            }
+        }
+
+        const onMouseMove = (event) => {
+            isMouseOnPage = true;
+            targetPosition.x = event.clientX - width / 2;
+            targetPosition.y = event.clientY - width / 2;
+            checkTextHover(event.clientX, event.clientY);
+        };
+
+        const onMouseLeave = () => {
+            isMouseOnPage = false;
+            startRandomMovement();
+        };
+
+        const onMouseEnter = () => {
+            isMouseOnPage = true;
+            stopRandomMovement();
+        };
+
+        // Start moving immediately on load
+        startRandomMovement();
+
+        function startRandomMovement() {
+            randomTimer = 0;
+            angle = Math.random() * Math.PI * 2;
+            randomVelocity.x = Math.cos(angle) * maxSpeed;
+            randomVelocity.y = Math.sin(angle) * maxSpeed;
+        }
+
+        function stopRandomMovement() {
+            randomTimer = 0;
+        }
+
+        function changeRandomDirection() {
+            angle += (Math.random() - 0.5) * Math.PI * 0.5;
+            randomVelocity.x = Math.cos(angle) * maxSpeed;
+            randomVelocity.y = Math.sin(angle) * maxSpeed;
+        }
+
+        const onTouchMove = (event) => {
+            mousePosition.x = event.touches[0].clientX - width / 2;
+            mousePosition.y = event.touches[0].clientY - width / 2;
+            checkTextHover(event.touches[0].clientX, event.touches[0].clientY);
+        };
+
+        function checkTextHover(x, y) {
+        }
+
+        function updateCursorScale(scaleMultiplier) {
+            dots.forEach((dot) => { dot.animateScale(scaleMultiplier); });
+        }
+
+        function updateCursorColor(color) {
+            dots.forEach((dot) => { dot.animateColor(color); });
+        }
+
+        const onMouseDown = () => {
+            dots.forEach((dot) => { dot.animateScale(currentScaleMultiplier * 1.5); });
+        };
+
+        const onMouseUp = () => {
+            dots.forEach((dot) => { dot.animateScale(currentScaleMultiplier); });
+        };
+
+        const render = (timestamp) => {
+            const delta = timestamp - lastFrame;
+            positionCursor(delta);
+            lastFrame = timestamp;
+            requestAnimationFrame(render);
+        };
+
+        const positionCursor = (delta) => {
+            if (!isMouseOnPage) {
+                randomTimer += delta;
+                if (randomTimer > 300 + Math.random() * 500) {
+                    changeRandomDirection();
+                    randomTimer = 0;
+                }
+                targetPosition.x += randomVelocity.x;
+                targetPosition.y += randomVelocity.y;
+                if (targetPosition.x < 50 || targetPosition.x > window.innerWidth - 50) {
+                    randomVelocity.x *= -1;
+                    angle = Math.atan2(randomVelocity.y, randomVelocity.x);
+                }
+                if (targetPosition.y < 50 || targetPosition.y > window.innerHeight - 50) {
+                    randomVelocity.y *= -1;
+                    angle = Math.atan2(randomVelocity.y, randomVelocity.x);
+                }
+                targetPosition.x = Math.max(50, Math.min(window.innerWidth - 50, targetPosition.x));
+                targetPosition.y = Math.max(50, Math.min(window.innerHeight - 50, targetPosition.y));
+            }
+
+            const lerpFactor = isMouseOnPage ? 0.15 : 0.5;
+            mousePosition.x += (targetPosition.x - mousePosition.x) * lerpFactor;
+            mousePosition.y += (targetPosition.y - mousePosition.y) * lerpFactor;
+
+            let x = mousePosition.x;
+            let y = mousePosition.y;
+            dots.forEach((dot, index, dots) => {
+                let nextDot = dots[index + 1] || dots[0];
+                dot.x = x;
+                dot.y = y;
+                dot.draw(delta);
+                const dx = (nextDot.x - dot.x) * 0.35;
+                const dy = (nextDot.y - dot.y) * 0.35;
+                x += dx;
+                y += dy;
+            });
+        };
+
+        initCursor();
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeuomorphism UI Kit - Realistic Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
+            border-radius: 15px;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.8) inset,
+                0 10px 30px rgba(0,0,0,0.3),
+                0 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 42px;
+            font-weight: 300;
+            color: #2c3e50;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .component-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 8px 20px rgba(0,0,0,0.15),
+                0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .component-header {
+            background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
+            padding: 15px 20px;
+            border-bottom: 1px solid #1a202c;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
+        }
+
+        .component-header h3 {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+            margin-bottom: 3px;
+        }
+
+        .component-header p {
+            font-size: 12px;
+            color: #cbd5e0;
+            font-weight: 300;
+        }
+
+        .component-preview {
+            padding: 30px 20px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.2s ease;
+            position: relative;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .btn-default {
+            background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+            border-color: #cbd5e0;
+            color: #2d3748;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 2px 5px rgba(0,0,0,0.1),
+                0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .btn-default:hover {
+            background: linear-gradient(180deg, #f7fafc 0%, #e2e8f0 100%);
+        }
+
+        .btn-default:active {
+            background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e0 100%);
+            box-shadow: 
+                0 1px 3px rgba(0,0,0,0.2) inset,
+                0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(180deg, #4299e1 0%, #2b6cb0 100%);
+            border-color: #2c5282;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.3) inset,
+                0 2px 5px rgba(0,0,0,0.2),
+                0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(180deg, #4299e1 0%, #3182ce 100%);
+        }
+
+        .btn-primary:active {
+            background: linear-gradient(180deg, #2b6cb0 0%, #2c5282 100%);
+            box-shadow: 
+                0 1px 3px rgba(0,0,0,0.3) inset,
+                0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .btn-success {
+            background: linear-gradient(180deg, #48bb78 0%, #2f855a 100%);
+            border-color: #276749;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.3) inset,
+                0 2px 5px rgba(0,0,0,0.2),
+                0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn-success:active {
+            background: linear-gradient(180deg, #2f855a 0%, #276749 100%);
+            box-shadow: 
+                0 1px 3px rgba(0,0,0,0.3) inset,
+                0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .skeu-card {
+            width: 240px;
+            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 8px 20px rgba(0,0,0,0.15),
+                0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .skeu-card-header {
+            background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
+        }
+
+        .skeu-card-body {
+            padding: 20px;
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .skeu-card-footer {
+            padding: 15px;
+            background: linear-gradient(180deg, #edf2f7 0%, #e2e8f0 100%);
+            border-top: 1px solid #cbd5e0;
+            text-align: center;
+            box-shadow: 0 -1px 0 rgba(255,255,255,0.5) inset;
+        }
+
+        .skeu-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #ffffff;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #2d3748;
+            margin: 8px 0;
+            box-shadow: 
+                0 2px 4px rgba(0,0,0,0.05) inset,
+                0 1px 0 rgba(255,255,255,0.5);
+            transition: all 0.2s ease;
+        }
+
+        .skeu-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 
+                0 2px 4px rgba(0,0,0,0.05) inset,
+                0 0 0 3px rgba(66,153,225,0.2);
+        }
+
+        .skeu-switch {
+            width: 60px;
+            height: 32px;
+            background: linear-gradient(180deg, #cbd5e0 0%, #a0aec0 100%);
+            border-radius: 16px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 
+                0 2px 4px rgba(0,0,0,0.2) inset,
+                0 1px 0 rgba(255,255,255,0.3);
+            border: 1px solid #a0aec0;
+            transition: all 0.3s ease;
+        }
+
+        .skeu-switch.active {
+            background: linear-gradient(180deg, #48bb78 0%, #38a169 100%);
+            border-color: #2f855a;
+        }
+
+        .skeu-switch-handle {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 2px 5px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .skeu-switch.active .skeu-switch-handle {
+            left: 29px;
+        }
+
+        .skeu-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            margin: 5px;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.3) inset,
+                0 2px 4px rgba(0,0,0,0.15);
+            border: 1px solid;
+        }
+
+        .badge-red {
+            background: linear-gradient(180deg, #fc8181 0%, #e53e3e 100%);
+            border-color: #c53030;
+            color: #fff;
+        }
+
+        .badge-blue {
+            background: linear-gradient(180deg, #63b3ed 0%, #3182ce 100%);
+            border-color: #2c5282;
+            color: #fff;
+        }
+
+        .badge-green {
+            background: linear-gradient(180deg, #68d391 0%, #38a169 100%);
+            border-color: #2f855a;
+            color: #fff;
+        }
+
+        .skeu-slider {
+            width: 200px;
+            height: 8px;
+            background: linear-gradient(180deg, #cbd5e0 0%, #e2e8f0 100%);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 
+                0 2px 4px rgba(0,0,0,0.15) inset,
+                0 1px 0 rgba(255,255,255,0.5);
+            border: 1px solid #a0aec0;
+        }
+
+        .skeu-slider-fill {
+            height: 100%;
+            background: linear-gradient(180deg, #4299e1 0%, #2b6cb0 100%);
+            border-radius: 4px 0 0 4px;
+            width: 60%;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset;
+        }
+
+        .skeu-slider-thumb {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 3px 8px rgba(0,0,0,0.3);
+            border: 1px solid #cbd5e0;
+            cursor: pointer;
+        }
+
+        .leather-texture {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139,69,19,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139,69,19,0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #8b4513 0%, #654321 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.1) inset,
+                0 8px 20px rgba(0,0,0,0.4);
+            border: 1px solid #3e2723;
+        }
+
+        .leather-texture p {
+            color: #d4af37;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            font-weight: 500;
+        }
+
+        .wood-texture {
+            background: 
+                repeating-linear-gradient(90deg, #8b4513 0px, #a0522d 2px, #8b4513 4px),
+                linear-gradient(180deg, #a0522d 0%, #654321 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 
+                0 1px 0 rgba(255,255,255,0.1) inset,
+                0 8px 20px rgba(0,0,0,0.4);
+            border: 2px solid #3e2723;
+        }
+
+        .wood-texture p {
+            color: #f5deb3;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .components-grid { grid-template-columns: 1fr; }
+            .skeu-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Skeuomorphism</h1>
+            <p>Realistic design inspired by physical objects</p>
+        </header>
+
+        <div class="components-grid">
+            <!-- Buttons -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Buttons</h3>
+                    <p>Realistic 3D buttons</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <button class="btn btn-default">Default</button>
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-success">Success</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Card</h3>
+                    <p>Physical card design</p>
+                </div>
+                <div class="component-preview">
+                    <div class="skeu-card">
+                        <div class="skeu-card-header">Card Title</div>
+                        <div class="skeu-card-body">
+                            <p>This card mimics a real physical card with realistic shadows and gradients.</p>
+                        </div>
+                        <div class="skeu-card-footer">
+                            <button class="btn btn-primary">Action</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Form Inputs</h3>
+                    <p>Realistic input fields</p>
+                </div>
+                <div class="component-preview">
+                    <div style="width: 100%; max-width: 250px;">
+                        <input type="text" class="skeu-input" placeholder="Username">
+                        <input type="password" class="skeu-input" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle Switch -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Toggle Switch</h3>
+                    <p>Physical switch design</p>
+                </div>
+                <div class="component-preview">
+                    <div class="skeu-switch" onclick="this.classList.toggle('active')">
+                        <div class="skeu-switch-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Badges</h3>
+                    <p>3D label badges</p>
+                </div>
+                <div class="component-preview">
+                    <div>
+                        <span class="skeu-badge badge-red">Important</span>
+                        <span class="skeu-badge badge-blue">Info</span>
+                        <span class="skeu-badge badge-green">Success</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Slider</h3>
+                    <p>Physical slider control</p>
+                </div>
+                <div class="component-preview">
+                    <div class="skeu-slider">
+                        <div class="skeu-slider-fill"></div>
+                        <div class="skeu-slider-thumb"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leather Texture -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Leather Texture</h3>
+                    <p>Real material simulation</p>
+                </div>
+                <div class="component-preview">
+                    <div class="leather-texture">
+                        <p>Leather-textured surface with realistic depth and shading</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wood Texture -->
+            <div class="component-card">
+                <div class="component-header">
+                    <h3>Wood Texture</h3>
+                    <p>Natural wood grain</p>
+                </div>
+                <div class="component-preview">
+                    <div class="wood-texture">
+                        <p>Wood-textured panel with grain pattern</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
